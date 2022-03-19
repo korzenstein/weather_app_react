@@ -1,47 +1,78 @@
-import React, {useState, useContext} from 'react';
-import { WeatherContext } from './WeatherContext';
-import Search from './Search'
-import LightCloud from '../weatherimages/LightCloud.png';
+import React, { useState, useContext, useEffect } from "react";
+import { WeatherContext } from "./WeatherContext";
+
+import Search from "./Search";
+// cloud images imported below
+import Clear from "../weatherimages/Clear.png";
+import Hail from "../weatherimages/Hail.png";
+import HeavyCloud from "../weatherimages/HeavyCloud.png";
+import HeavyRain from "../weatherimages/HeavyRain.png";
+import LightCloud from "../weatherimages/LightCloud.png";
+import LightRain from "../weatherimages/LightRain.png";
+import Shower from "../weatherimages/Shower.png";
+import Sleet from "../weatherimages/Sleet.png";
+import Snow from "../weatherimages/Snow.png";
+import Thunderstorm from "../weatherimages/Thunderstorm.png";
 
 const Current = () => {
-    const [city, setCity] = useContext(WeatherContext)
-    const [weather, updateWeather] = useContext(WeatherContext)
+  const [city, setCity] = useContext(WeatherContext);
+  const [weather, updateWeather] = useContext(WeatherContext);
+
+  const month = `${new Date().toLocaleString("en-US", { month: "long" })}`;
+  const date = `${new Date().toLocaleString("en-US", { day: "2-digit" })}`;
+
+  const clouds = weather?.list?.[0].weather?.[0].description;
+
+
+  const cloudImage = (cloudType) => {
+    const values = {
+      clear: Clear,
+      hail: Hail,
+      "heavy clouds": HeavyCloud,
+      "heavy rain": HeavyRain,
+      "light rain": LightRain,
+      showers: Shower,
+      sleet: Sleet,
+      snow: Snow,
+      thunderstorm: Thunderstorm,
+    };
+    const cloudImage = cloudType.map((i) => values[i] === cloudType);
+    return cloudImage;
+  };
+
+  
+  useEffect(() => {
+    console.log("useEffect used");
     
-    const month = `${new Date().toLocaleString("en-US", { month: "long" })}`
-    const date = `${new Date().toLocaleString("en-US", { day : '2-digit'})}`
+  }, [updateWeather, weather, city, setCity]);
 
-    // function titleCase(phrase) {
-    //     return phrase.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');}
+  
 
-
-    return(
-        
-        <section className="current">
-            <Search/>
-            <div className="current-wrapper">
-                <div className="current-container">
-                    <div className="current-nav">
-                    <p>Search for places</p>
-                    <p>0</p>
-                </div>
-            <div className="current-status">
-            <div>
-                <img alt="cloud" src={LightCloud}/>
-            </div>
-            <h1 className="temperature">{Math.round(weather?.list?.[0].main.temp - 273)}C</h1>
-            <h4>{weather?.list?.[0].pop}</h4>
-            <p>{month} {date}</p>
-            
-            <div>
+  return (
+    <section className="current">
+      <Search />
+      <div className="current-container">
+        <div className="current-nav">
+          {/* <button className="button" onClick={handleToggleBody}>Search Here</button> */}
+          <button>0</button>
         </div>
-        <div className="current-city"><h4>{weather?.city?.name} {weather?.city?.country}</h4></div>
-    </div>
-    </div>
-    </div>
-    
-        </section>
-    )
-}
+        <div className="current-img">
+          <img alt="cloud" src={LightCloud} />
+        </div>
+        <h1 className="current-temperature">
+          {Math.round(weather?.list?.[0].main.temp - 273)}C
+        </h1>
+        <h4>{clouds}</h4>
+        <div className="current-city-date">
+          <p>
+            Today • {date} {month}
+          </p>
+          <h4>{weather?.city?.name}</h4>
+          
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default Current
-
+export default Current;

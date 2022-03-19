@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-import "./App.css"
+import "./styles/styles.css"
 import Forecast from "./components/Forecast";
 import Current from "./components/Current";
 import {WeatherProvider} from "./components/WeatherContext"

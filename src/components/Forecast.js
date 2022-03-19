@@ -1,22 +1,23 @@
-import React, {useState, useContext} from 'react';
-import { WeatherProvider } from './WeatherContext';
-import Days from './Days'
-import Highlights from './Highlights'
+import React, { useState, useContext } from "react";
+import { WeatherProvider } from "./WeatherContext";
+import Days from "./Days";
+import Highlights from "./Highlights";
 
 const Forecast = () => {
-    return(
-        <section className="forecast">
-
-        <div className="forecast-wrapper">
+  return (
+    <section className="forecast">
+      <div className="forecast-wrapper">
         <div className="forecast-container">
-            
-        <Days/>
-        <Highlights/>
-        {/* <button className="button" onClick={fetchWeather}>HELP ME</button> */}
+          <div className="forecast-units">
+            <button className="celcius">C</button>
+            <button className="feirenheit">F</button>
+          </div>
+          <Days />
+          <Highlights />
         </div>
-        </div>
-        </section>
-    )
-}
+      </div>
+    </section>
+  );
+};
 
-export default Forecast
+export default Forecast;

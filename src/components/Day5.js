@@ -6,7 +6,6 @@ import snow from '../weatherimages/Snow.png'
 const Day5 = () => {
     const [city, setCity] = useContext(WeatherContext)
     const [weather, updateWeather] = useContext(WeatherContext)
-    const index = 39
    
     return(
         <div className="day-card">
@@ -14,7 +13,7 @@ const Day5 = () => {
             <img  alt="snow" src={snow} />
         
             </div>
-            <div><p>{`${Math.round(weather?.list?.[index].main.temp_max - 273)}C`}  {`${Math.round(weather?.list?.[index].main.temp_min - 273)}C`}</p></div>
+            <div><p>{`${Math.round(weather?.list?.[35].main.temp_max - 273)}C`}  {`${Math.round(weather?.list?.[39].main.temp_max - 273)}C`}</p></div>
         </div>
     )
 }

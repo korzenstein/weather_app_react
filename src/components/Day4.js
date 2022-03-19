@@ -14,7 +14,7 @@ const Day4 = () => {
             <img  alt="snow" src={snow} />
         
             </div>
-            <div><p>{`${Math.round(weather?.list?.[index].main.temp_max - 273)}C`}  {`${Math.round(weather?.list?.[index].main.temp_min - 273)}C`}</p></div>
+            <div><p>{`${Math.round(weather?.list?.[27].main.temp_max - 273)}C`}  {`${Math.round(weather?.list?.[31].main.temp_max - 273)}C`}</p></div>
         </div>
     )
 }

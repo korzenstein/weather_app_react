@@ -1,33 +1,27 @@
-import React, {useState, useContext} from 'react';
-import { WeatherContext } from './WeatherContext';
+import React, { useState, useContext } from "react";
+import { WeatherContext } from "./WeatherContext";
+import axios from "axios";
+
 
 const Highlights = () => {
-    const [city, setCity] = useContext(WeatherContext)
-    const [weather, updateWeather] = useContext(WeatherContext)
+  const [city, setCity] = useContext(WeatherContext);
+  const [weather, updateWeather] = useContext(WeatherContext);
 
-    return(
-
-        
-        <div>
-        <p>Testing</p>
-        <p>{weather?.city?.sunset}</p>
-
+  return (
+    <section className="highlights">
+      <h3>Today's Highlights</h3>
+      <div className="highlights-container">
+        <div className="highlights-upper flex">
+          <div className="wind"><p>wind</p></div>
+          <div className="humidity"><p>humidity</p></div>
         </div>
-    //     <section className="highlights-container">
-    //         <h1>Welcome</h1>
-    //         {/* <p>{fetchCity}</p> */}
-    //         <form>
-    //         <input
-    //         placeholder="city"
-    //         onChange={(e) => setCities(e.target.value)}
-    //         />
-    //         <button type="submit"></button>
-    //         </form>
-    
-    // </section>  
-            
-            
-    )
-}
+        <div className="highlights-lower flex">
+          <div className="visibility f1"><p>visibility</p></div>
+          <div className="pressure f1"><p>pressure</p></div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default Highlights
+export default Highlights;
